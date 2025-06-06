@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "lucasgomez@gmail.com",
+      "password": "262d76db85e859a832d3ce5be29c6f465f0f84d095a46a0eafb1e107afd2effa",
+      "firstName": "Lucas",
+      "lastName": "Gomez",
+      "phone": "c4a929bb0e27ccf25334b9adb4c3bfe9e230de9876170c104e6d2efb17132aa1",
+      "empresa": "Logitec",
+      "terms": true
+    }
+  ]
+}
