@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:crypto/crypto.dart' show sha256;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -13,14 +12,14 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _dniController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _empresaController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  bool _obscureEmpresa = true;
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
   bool _termsAccepted = false;
@@ -29,9 +28,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void dispose() {
     _firstNameController.dispose();
     _lastNameController.dispose();
+    _dniController.dispose();
+    _birthDateController.dispose();
+    _phoneNumberController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
-    _empresaController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -57,9 +57,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _validateFields() {
     if (_firstNameController.text.isEmpty ||
         _lastNameController.text.isEmpty ||
+        _dniController.text.isEmpty ||
+        _birthDateController.text.isEmpty ||
+        _phoneNumberController.text.isEmpty ||
         _emailController.text.isEmpty ||
-        _phoneController.text.isEmpty ||
-        _empresaController.text.isEmpty ||
         _passwordController.text.isEmpty ||
         _confirmPasswordController.text.isEmpty) {
       _showSnackBar('Todos los campos son obligatorios');
@@ -69,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _showSnackBar('Ingrese un email válido');
       return false;
     }
-    if (!_validatePhone(_phoneController.text)) {
+    if (!_validatePhone(_phoneNumberController.text)) {
       _showSnackBar('Ingrese un número de celular válido (9 dígitos)');
       return false;
     }
@@ -96,28 +97,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
     ).showSnackBar(SnackBar(content: Text(message), backgroundColor: color));
   }
 
-  String _encrypt(String value) {
-    return sha256.convert(utf8.encode(value)).toString();
-  }
-
   Future<void> _registerUser() async {
     if (!_validateFields()) return;
 
-    final url = Uri.parse('http://localhost:3000/register');
+    final url = Uri.parse('http://localhost:3000/api/v1/auth/sign-up');
     final response = await http.post(
       url,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'origin': 'http://localhost',
+      },
       body: jsonEncode({
         'firstName': _firstNameController.text,
         'lastName': _lastNameController.text,
+        'dni': _dniController.text,
+        'birthDate': _birthDateController.text,
+        'phoneNumber': _phoneNumberController.text,
         'email': _emailController.text,
-        'phone': _encrypt(_phoneController.text),
-        'empresa': _empresaController.text,
-        'password': _encrypt(_passwordController.text),
-        'terms': _termsAccepted, // <-- Agrega esto
+        'password': _passwordController.text,
       }),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       _showSnackBar('Registro exitoso', color: Colors.green);
       await Future.delayed(const Duration(seconds: 1));
       if (mounted) {
@@ -199,6 +199,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: _dniController,
+                      decoration: InputDecoration(
+                        labelText: 'DNI',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: TextField(
+                      controller: _birthDateController,
+                      decoration: InputDecoration(
+                        labelText: 'Birth Date (YYYY-MM-DD)',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.datetime,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _phoneNumberController,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -209,41 +252,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.emailAddress,
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
                 ],
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                controller: _empresaController,
-                obscureText: _obscureEmpresa,
-                decoration: InputDecoration(
-                  labelText: 'Empresa',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureEmpresa ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureEmpresa = !_obscureEmpresa;
-                      });
-                    },
-                  ),
-                ),
               ),
               const SizedBox(height: 20),
               TextField(

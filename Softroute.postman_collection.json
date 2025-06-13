@@ -1,0 +1,526 @@
+{
+	"info": {
+		"_postman_id": "67ff10eb-7065-4f20-9ee9-e474082c389f",
+		"name": "Softroute",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24112281"
+	},
+	"item": [
+		{
+			"name": "Packages",
+			"item": [
+				{
+					"name": "Get All Packages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE5MjY3OTY2LCJleHAiOjE3MTk4NzI3NjZ9.I4jhnyJluDqNOpBmvzHn9TsF5_8R3imyYEfazz3lpWY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/packages"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Package",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3NzUyMjc5LCJleHAiOjE3MTgzNTcwNzl9.LIUHepd6ir4tFCfndaIvnEc9bHvT4mEX3WdeAiby2BQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"A medium-sized package containing electronics.\",\r\n  \"weight\": 5.0,\r\n  \"height\": 15.0,\r\n  \"width\": 20.0,\r\n  \"length\": 30.0,\r\n  \"ownerId\": \"444e3456-e89b-12d3-a456-426614174000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/packages"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Package By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3ODg5NjM5LCJleHAiOjE3MTg0OTQ0Mzl9.vMLfOzdV8sQNZy96_VMtEVgLf_OneRmuaFyEmTqvV_g"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/packages/112e4567-e89b-12d3-a456-426614174004"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"trackingNumber\": \"wa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8081/api/v1/packages/112e4567-e89b-12d3-a456-426614174000/tracking-number"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tracking",
+			"item": [
+				{
+					"name": "Get Shipment By Tracking Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3ODI5MzU5LCJleHAiOjE3MTg0MzQxNTl9.Hd3-8ZFwzyqlq6ECYz4-Qq8rCF0vPCdbD78VpYa7qnc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/tracking/TRK1234"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tracking By Tracking Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8084/api/v1/tracking/TRK1234"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tracking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deviceId\": \"132e4567-e89b-12d3-a456-426614174000\",\r\n    \"packageId\": \"deb4f99f-6097-439f-b934-6c29718c8a4f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8084/api/v1/tracking"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"latitude\": \"100.00\",\r\n    \"longitude\": \"200.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/locations"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Iot Device",
+			"item": [
+				{
+					"name": "Sent Location data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta tenga un código de estado 200 OK\r",
+									"pm.test(\"La solicitud fue exitosa\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shipmentCode\": \"0XN2KPO\",\r\n    \"latitude\": -12.103907323663309,\r\n    \"longitude\": -76.96375149242841\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/iot-devices/location-data"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta tenga un código de estado 200 OK\r",
+									"pm.test(\"La solicitud fue exitosa\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shipmentCode\": \"DYGFWO0\",\r\n    \"packageCode\": \"THOYV\",\r\n    \"humidity\": -12.103907323663309,\r\n    \"temperature\": -76.96375149242841\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/iot-devices/data"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IAM",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Diego\",\r\n    \"lastName\": \"Antonio\",\r\n    \"dni\": \"1\",\r\n    \"birthDate\": \"2024-04-04\",\r\n    \"phoneNumber\": \"1\",\r\n    \"email\": \"diego2@gmail.com\",\r\n    \"password\": \"manolito1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/auth/sign-up"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"diegodelacruz@gmail.com\",\r\n    \"password\": \"diego1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/auth/sign-in"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImMzMmM5OWIyLTVmM2UtNDBhNi1hYmI1LTNmYzA5NjRmNmI1ZCIsInN1YiI6ImRpZWdvQGdtYWlsLmNvbSIsImlhdCI6MTcxNzA2MTAzNCwiZXhwIjoxNzE3NjY1ODM0fQ.79e4ol0Urrz8epiV1-ImCAfz7ikexQbDnikn9oAAhGM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/users/hello"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiI1ZDllNmU3Yy0xM2NkLTQ5YTMtODEzMS03NTMxNjY1NDY3NmUiLCJpZCI6ImExZTRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3MTAzMjc1LCJleHAiOjE3MTc3MDgwNzV9.AVZYkZm7FhLLU3t6CoMtVg3IhzzqlbXyN2o0lZ9UhDg"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/a1e4a8a8-1e9b-4f8c-8c8e-123456789001/assignCompany?companyId=a1e4a8a8-1e9b-4f8c-8c8e-123456789000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"a1e4a8a8-1e9b-4f8c-8c8e-123456789001",
+								"assignCompany"
+							],
+							"query": [
+								{
+									"key": "companyId",
+									"value": "a1e4a8a8-1e9b-4f8c-8c8e-123456789000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:49903/api/v1/users/a1e4a8a8-1e9b-4f8c-8c8e-123456789000/assignCompany?companyId=c32c99b2-5f3e-40a6-abb5-3fc0964f6b5d",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImMzMmM5OWIyLTVmM2UtNDBhNi1hYmI1LTNmYzA5NjRmNmI1ZCIsInN1YiI6ImRpZWdvQGdtYWlsLmNvbSIsImlhdCI6MTcxNzA2MTAzNCwiZXhwIjoxNzE3NjY1ODM0fQ.79e4ol0Urrz8epiV1-ImCAfz7ikexQbDnikn9oAAhGM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:49903/api/v1/users/a1e4a8a8-1e9b-4f8c-8c8e-123456789000/assignCompany?companyId=c32c99b2-5f3e-40a6-abb5-3fc0964f6b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "49903",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"a1e4a8a8-1e9b-4f8c-8c8e-123456789000",
+								"assignCompany"
+							],
+							"query": [
+								{
+									"key": "companyId",
+									"value": "c32c99b2-5f3e-40a6-abb5-3fc0964f6b5d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Create Company",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJjMzJjOTliMi01ZjNlLTQwYTYtYWJiNS0zZmMwOTY0ZjZiNWQiLCJpZCI6ImExZTRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3MTAxNzg2LCJleHAiOjE3MTc3MDY1ODZ9.lTMdqOlkaglTmi5eqVZIXp4Uv0CdtgjF_AClL-BWam8"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Manolito S.A.C\",\r\n    \"ruc\": \"92345618493\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/organization/companies"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Employee",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE3ODg5NjM5LCJleHAiOjE3MTg0OTQ0Mzl9.vMLfOzdV8sQNZy96_VMtEVgLf_OneRmuaFyEmTqvV_g"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/employees"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shipments",
+			"item": [
+				{
+					"name": "Get All Shipments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE5MjY3OTY2LCJleHAiOjE3MTk4NzI3NjZ9.I4jhnyJluDqNOpBmvzHn9TsF5_8R3imyYEfazz3lpWY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/shipments/a1f3b7b7-1e9b-4f8c-8c8e-123456789000"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Send Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE5MjY3OTY2LCJleHAiOjE3MTk4NzI3NjZ9.I4jhnyJluDqNOpBmvzHn9TsF5_8R3imyYEfazz3lpWY"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\": \"diego04s03@gmail.com\",\r\n    \"subject\": \"Test subject\",\r\n    \"body\": \"This is a sample message, wa.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/notifications/emails"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Diego\",\r\n    \"lastName\": \"De la Cruz\",\r\n    \"nationalProviderIdentifier\": \"550e8400-e29b-41d4-a716-446655440000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host}}/api/v1/examiners"
+			},
+			"response": []
+		},
+		{
+			"name": "http://IAM-SERVICE/api/v1/users/c32c99b2-5f3e-40a6-abb5-3fc0964f6b5d/assignCompany",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://IAM-SERVICE/api/v1/users/c32c99b2-5f3e-40a6-abb5-3fc0964f6b5d/assignCompany"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wYW55SWQiOiJhMWU0YThhOC0xZTliLTRmOGMtOGM4ZS0xMjM0NTY3ODkwMDAiLCJpZCI6ImIwMDRhOGE4LTFlOWItNGY4Yy04YzhlLTEyMzQ1Njc4OTAwMCIsInN1YiI6ImRpZWdvZGVsYWNydXpAZ21haWwuY29tIiwiaWF0IjoxNzE5MjY3OTY2LCJleHAiOjE3MTk4NzI3NjZ9.I4jhnyJluDqNOpBmvzHn9TsF5_8R3imyYEfazz3lpWY"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

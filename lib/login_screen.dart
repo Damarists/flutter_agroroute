@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agroroute/user_session.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:crypto/crypto.dart' show sha256;
@@ -32,17 +33,19 @@ class _LoginScreenState extends State<LoginScreen> {
       _showSnackBar('Email y contraseña son obligatorios');
       return;
     }
-    final url = Uri.parse('http://localhost:3000/login');
+    final url = Uri.parse('http://localhost:3000/api/v1/auth/sign-in');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'email': email, 'password': _encrypt(password)}),
+      body: jsonEncode({'email': email, 'password': password}),
     );
     if (response.statusCode == 200) {
+      final decoded = jsonDecode(response.body);
+      UserSession.userId = decoded['user']['id'];
       _showSnackBar('Login exitoso', color: Colors.green);
       await Future.delayed(const Duration(milliseconds: 500));
       if (mounted) {
-        Navigator.pushReplacementNamed(context, '/dashboard');
+        Navigator.pushReplacementNamed(context, '/shipments');
       }
     } else {
       String errorMsg = 'Login no exitoso';

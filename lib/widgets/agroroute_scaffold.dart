@@ -4,111 +4,57 @@ class AgroRouteScaffold extends StatelessWidget {
   final Widget body;
   final String title;
   final int selectedIndex;
+  final FloatingActionButton? floatingActionButton;
 
   const AgroRouteScaffold({
     super.key,
     required this.body,
     this.title = 'AgroRoute',
     this.selectedIndex = 0,
+    this.floatingActionButton,
   });
+
+  void _onItemTapped(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/dashboard',
+          (route) => false,
+        );
+        break;
+      case 1:
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/shipments',
+          (route) => false,
+        );
+        break;
+      case 2:
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/shipping',
+          (route) => false,
+        );
+        break;
+      case 3:
+        // Implementa la navegación si tienes la ruta de alertas
+        break;
+      case 4:
+        // Implementa la navegación si tienes la ruta de sensores
+        break;
+      case 5:
+        // Logout
+        Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 79, 92, 255),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.network(
-                    'https://i.postimg.cc/BZ1WqRvG/image-removebg-preview.png',
-                    height: 48,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'AgroRoute',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.dashboard),
-              title: const Text('Dashboard'),
-              selected: selectedIndex == 0,
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  '/dashboard',
-                  (route) => false,
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.local_shipping),
-              title: const Text('Envíos'),
-              selected: selectedIndex == 1,
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  '/shipping',
-                  (route) => false,
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.warning_amber),
-              title: const Text('Gestión de Alertas'),
-              selected: selectedIndex == 2,
-              onTap: () {
-                // Implementa la navegación si tienes la ruta
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.sensors),
-              title: const Text('Sensores'),
-              selected: selectedIndex == 3,
-              onTap: () {
-                // Implementa la navegación si tienes la ruta
-                Navigator.pop(context);
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('Cerrar Sesión'),
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  '/',
-                  (route) => false,
-                );
-              },
-            ),
-          ],
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black87),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
         title: Row(
           children: [
             Image.network(
@@ -137,6 +83,34 @@ class AgroRouteScaffold extends StatelessWidget {
         ],
       ),
       body: body,
+      floatingActionButton: floatingActionButton,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: (index) => _onItemTapped(context, index),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color.fromARGB(255, 79, 92, 255),
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_shipping),
+            label: 'Envíos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2),
+            label: 'Paquetes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.warning_amber),
+            label: 'Alertas',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.sensors), label: 'Sensores'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Salir'),
+        ],
+      ),
     );
   }
 }

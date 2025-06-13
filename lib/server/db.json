@@ -2,13 +2,162 @@
   "users": [
     {
       "id": 1,
-      "email": "lucasgomez@gmail.com",
-      "password": "262d76db85e859a832d3ce5be29c6f465f0f84d095a46a0eafb1e107afd2effa",
       "firstName": "Lucas",
-      "lastName": "Gomez",
-      "phone": "c4a929bb0e27ccf25334b9adb4c3bfe9e230de9876170c104e6d2efb17132aa1",
-      "empresa": "Logitec",
-      "terms": true
+      "lastName": "Gomez Martinez",
+      "dni": "78093456",
+      "birthDate": "2004-08-23",
+      "phoneNumber": "908678456",
+      "email": "lucasgomez@gmail.com",
+      "password": "Luc@s1234"
+    }
+  ],
+  "shipments": [
+    {
+      "id": 1,
+      "trackingNumber": "TRK7461",
+      "ownerId": 1,
+      "destino": "Alameda El Corregidor 241",
+      "fecha": "2025-07-11T00:00:00.000",
+      "estado": "En proceso",
+      "ubicacion": true,
+      "paquetes": [
+        {
+          "codigo": "PQ7665",
+          "cliente": "Juan Gomez Perez",
+          "destino": "Abancay 13",
+          "sensores": [
+            {
+              "tipo": "Humedad",
+              "valor": "22°C"
+            },
+            {
+              "tipo": "CO2",
+              "valor": "60%"
+            }
+          ],
+          "ubicacion": true,
+          "descripcion": "Fresas frescas",
+          "peso": "20",
+          "alto": "12",
+          "ancho": "15",
+          "largo": "10",
+          "fecha": "2025-07-18T00:00:00.000",
+          "estado": "En proceso"
+        },
+        {
+          "codigo": "PQ2762",
+          "cliente": "Luis Gomez",
+          "destino": "Jockey Plaza",
+          "sensores": [
+            {
+              "tipo": "Humedad",
+              "valor": "30°C"
+            }
+          ],
+          "ubicacion": true,
+          "descripcion": "Ropa",
+          "peso": "30",
+          "alto": "12",
+          "ancho": "20",
+          "largo": "15",
+          "fecha": "2025-07-17T00:00:00.000",
+          "estado": "En proceso"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "trackingNumber": "TRK9052",
+      "ownerId": 1,
+      "destino": "Jockey Plaza",
+      "fecha": "2025-08-15T00:00:00.000",
+      "estado": "En proceso",
+      "ubicacion": true,
+      "paquetes": [
+        {
+          "codigo": "PQ8977",
+          "cliente": "Juan Magallanes",
+          "destino": "Alameda El Corregidor",
+          "sensores": [
+            {
+              "tipo": "Temperatura",
+              "valor": "22°C"
+            }
+          ],
+          "ubicacion": true,
+          "descripcion": "Ropa",
+          "peso": "20",
+          "alto": "15",
+          "ancho": "12",
+          "largo": "23",
+          "fecha": "2025-07-17T00:00:00.000",
+          "estado": "En proceso"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "trackingNumber": "TRK6151",
+      "ownerId": 1,
+      "destino": "Monterrico",
+      "fecha": "2025-07-17T00:00:00.000",
+      "estado": "En proceso",
+      "ubicacion": true,
+      "paquetes": [
+        {
+          "codigo": "PQ3061",
+          "cliente": "Maria Martinez",
+          "destino": "Primavera 123",
+          "sensores": [
+            {
+              "tipo": "Temperatura",
+              "valor": "10°"
+            },
+            {
+              "tipo": "Humedad",
+              "valor": "12°"
+            }
+          ],
+          "ubicacion": true,
+          "descripcion": "Laptop",
+          "peso": "4",
+          "alto": "1",
+          "ancho": "1",
+          "largo": "1",
+          "fecha": "2025-06-26T00:00:00.000",
+          "estado": "En proceso"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "trackingNumber": "TRK3503",
+      "ownerId": 1,
+      "destino": "Abancay",
+      "fecha": "2025-07-11T00:00:00.000",
+      "estado": "En proceso",
+      "ubicacion": true,
+      "paquetes": [
+        {
+          "codigo": "PQ9195",
+          "cliente": "Julio Perez",
+          "destino": "Hiraoka",
+          "sensores": [
+            {
+              "tipo": "Humedad",
+              "valor": "20°"
+            }
+          ],
+          "ubicacion": true,
+          "descripcion": "Electrodomésticos",
+          "peso": "20",
+          "alto": "12",
+          "ancho": "12",
+          "largo": "10",
+          "fecha": "2025-07-02T00:00:00.000",
+          "estado": "En proceso"
+        }
+      ]
     }
   ]
 }

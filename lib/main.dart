@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agroroute/PackageDetailScreen.dart';
+import 'package:flutter_agroroute/ShipmentDetailScreen.dart';
+import 'package:flutter_agroroute/shipments_screen.dart';
+import 'package:flutter_agroroute/shipping_screen.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
-import 'shipping_screen.dart';
-import 'dashboard_screen.dart';
 
 void main() {
   runApp(const AgroRouteApp());
@@ -25,8 +27,10 @@ class AgroRouteApp extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
+        '/shipments': (context) => ShipmentsScreen(),
+        '/shipment-detail': (context) => const ShipmentDetailScreen(),
         '/shipping': (context) => const ShippingScreen(),
-        '/dashboard': (context) => DashboardScreen(),
+        '/package-detail': (context) => const PackageDetailScreen(),
       },
       debugShowCheckedModeBanner: false,
     );
