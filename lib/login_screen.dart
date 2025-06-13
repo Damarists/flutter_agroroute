@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_agroroute/user_session.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:crypto/crypto.dart' show sha256;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,10 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(message), backgroundColor: color));
-  }
-
-  String _encrypt(String value) {
-    return sha256.convert(utf8.encode(value)).toString();
   }
 
   Future<void> _loginUser() async {
